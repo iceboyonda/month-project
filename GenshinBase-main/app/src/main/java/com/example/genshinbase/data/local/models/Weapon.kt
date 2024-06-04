@@ -21,8 +21,9 @@ import androidx.room.PrimaryKey
 ])
 data class Weapon(
     @PrimaryKey(autoGenerate = true)
-    val weaponId: Long = 0,
+    val weaponId: Long = 1,
     val name: String,
     val rarityId: Long,
     val weaponTypeId: Long,
+    val url: String
 )

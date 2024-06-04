@@ -9,18 +9,6 @@ import androidx.room.PrimaryKey
     tableName = "character",
     foreignKeys = [
         ForeignKey(
-            entity = WeaponType::class,
-            parentColumns = ["weaponTypeId"],
-            childColumns = ["weaponTypeId"],
-            onDelete = ForeignKey.CASCADE
-        ),
-//        ForeignKey(
-//            entity = Region::class,
-//            parentColumns = ["regionId"],
-//            childColumns = ["regionId"],
-//            onDelete = ForeignKey.CASCADE
-//        ),
-        ForeignKey(
             entity = Rarity::class,
             parentColumns = ["rarityId"],
             childColumns = ["rarityId"],
@@ -36,11 +24,12 @@ import androidx.room.PrimaryKey
 )
 data class CharacterModel(
     @PrimaryKey(autoGenerate = true)
-    val characterId: Long = 0,
+    val characterId: Long = 1,
     val name: String,
-    val weaponTypeId: Long,
+    val weaponId: Long,
     val regionId: Long,
     val rarityId: Long,
     val elementId: Long,
-    val url: String
+    val url: String,
+    val description: String
 )

@@ -1,13 +1,16 @@
 package com.example.genshinbase.domain.models
 
+//Модельки данных для отображения на экранах
+
 data class CharacterUI(
     val characterId: Long,
     val name: String,
-    val weaponTypeId: Long,
-    val regionId: Long,
+    val weapon: WeaponUI,
+    val region: RegionUI,
     val rarity: Long,
-    val elementId: Long,
-    val url: String
+    val element: ElementUI,
+    val url: String,
+    val description: String,
 )
 
 data class ElementUI(
@@ -33,6 +36,15 @@ data class WeaponTypeUI(
 data class WeaponUI(
     val weaponId: Long,
     val name: String,
-    val rarityId: Long,
-    val weaponTypeId: Long
+    val rarity: Long,
+    val weaponTypeId: Long,
+    val url: String,
+)
+
+data class MaterialUI(
+    val materialId: Long,
+    val title: String,
+    val url: String,
+    val description: String,
+    val rarity: Long
 )

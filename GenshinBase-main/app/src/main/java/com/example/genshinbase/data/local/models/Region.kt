@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "region")
 class Region (
     @PrimaryKey(autoGenerate = true)
-    val regionId: Long = 0,
+    val regionId: Long = 1,
     val name: String,
 )

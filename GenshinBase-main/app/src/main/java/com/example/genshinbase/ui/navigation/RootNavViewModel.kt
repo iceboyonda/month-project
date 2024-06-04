@@ -19,7 +19,7 @@ class RootNavViewModel @Inject constructor(private val genshinRepositoryImpl: Ge
         viewModelScope.launch {
             val data = genshinRepositoryImpl.getAllCharacters()
             if (data.isEmpty()) {
-                BaseUtil.insertCharacters(genshinRepositoryImpl) {
+                BaseUtil.insertData(genshinRepositoryImpl) {
                     stateFlow.tryEmit(stateFlow.value.copy(loadData = true))
                 }
             } else {

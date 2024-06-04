@@ -1,4 +1,4 @@
-package com.example.genshinbase.ui.presentation.main
+package com.example.genshinbase.ui.presentation.weapon
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,24 +20,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.genshinbase.domain.models.CharacterUI
+import com.example.genshinbase.domain.models.WeaponUI
 import com.example.genshinbase.ui.navigation.Screens
 
 
 @Composable
-fun MainScreen(navHostController: NavHostController) {
-    val viewModel = hiltViewModel<MainViewModel>()
-    val state = viewModel.stateFlow.collectAsState()
+fun WeaponCharacterScreen(navHostController: NavHostController) {
+    val viewModel = hiltViewModel<WeaponCharacterViewModel>()
+    val state = viewModel.state.collectAsState()
 
     LaunchedEffect(viewModel) {
-        viewModel.loadCharacter()
+        viewModel.loadWeapons()
     }
 
     LazyColumn(
@@ -45,12 +44,10 @@ fun MainScreen(navHostController: NavHostController) {
             .fillMaxSize()
             .padding(horizontal = 16.dp),
         contentPadding = PaddingValues(vertical = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        items(state.value.characters) {character ->
-            CharacterItem(characterUI = character, modifier = Modifier.fillMaxWidth()) {
-                navHostController.navigate(Screens.DetailCharacter.generateLink(character.characterId))
-            }
+        items(state.value.weapons) {character ->
+            WeaponItem(weaponUI = character, modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -58,15 +55,14 @@ fun MainScreen(navHostController: NavHostController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterItem(
-    characterUI: CharacterUI,
+fun WeaponItem(
+    weaponUI: WeaponUI,
     modifier: Modifier = Modifier,
-    onClick: (Long) -> Unit
 ) {
-    Card(modifier = modifier, onClick = { onClick(characterUI.characterId) }) {
+    Card(modifier = modifier, onClick = { }, enabled = false) {
         Row(modifier = Modifier) {
             AsyncImage(
-                model = characterUI.url,
+                model = weaponUI.url,
                 contentDescription = null,
                 modifier = Modifier
                     .padding(vertical = 3.dp)
@@ -74,7 +70,7 @@ fun CharacterItem(
             )
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = characterUI.name,
+                    text = weaponUI.name,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier
                         .padding(top = 14.dp)
@@ -83,7 +79,7 @@ fun CharacterItem(
                     modifier = Modifier.padding(top = 15.dp),
                     horizontalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
-                    for (i in 1..characterUI.rarity) {
+                    for (i in 1..weaponUI.rarity) {
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = null,

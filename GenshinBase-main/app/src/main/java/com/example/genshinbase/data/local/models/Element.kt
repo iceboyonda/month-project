@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "element")
 data class Element(
     @PrimaryKey(autoGenerate = true)
-    val elementId: Long = 0,
+    val elementId: Long = 1,
     val name: String
 )

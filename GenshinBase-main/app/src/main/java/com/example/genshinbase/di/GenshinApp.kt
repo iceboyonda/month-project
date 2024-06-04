@@ -10,5 +10,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+
 @HiltAndroidApp
 class GenshinApp : Application()

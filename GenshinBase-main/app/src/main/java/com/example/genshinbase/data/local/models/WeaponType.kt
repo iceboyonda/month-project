@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "weaponType")
 data class WeaponType(
     @PrimaryKey(autoGenerate = true)
-    val weaponTypeId: Long = 0,
+    val weaponTypeId: Long = 1,
     val name: String
 )
